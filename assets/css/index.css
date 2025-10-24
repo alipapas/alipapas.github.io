@@ -1,0 +1,61 @@
+/* layout: sidebar + main-body side-by-side with 10px gap */
+* { box-sizing: border-box; }
+
+body {
+  height: 100%;
+    /* fallback kolor (dla starszych przeglądarek) */
+    background: #0f172a;
+    /* prosty pionowy gradient */
+    background: linear-gradient(to bottom, #0f172a 0%, #1e3a8a 100%);
+    background-repeat: no-repeat;
+
+    /* możesz też użyć kąta i wielu przystanków:
+       diagonalny gradient z trzema kolorami */
+    /* background: linear-gradient(135deg, #0f172a 0%, #1e3a8a 50%, #60a5fa 100%); */
+    border: 2px solid #000;
+    margin: 0;
+    font-family: system-ui, Arial, sans-serif;
+}
+
+/* używamy main jako flex containera, żeby divy były obok siebie */
+main {
+    display: flex;
+    gap: 10px; /* przerwa między sidebar a main-body */
+    align-items: flex-start;
+    padding: 10px;
+}
+
+/* sidebar: nie więcej niż 768px, może zmniejszać się na węższych ekranach */
+.sidebar {
+    flex: 0 0 300px; /* domyślny startowy rozmiar */
+    max-width: 768px; /* nie przekroczy 768px */
+    width: 100%;
+    background: #f4f4f4;
+    padding: 16px;
+    border: 1px solid #ddd;
+    border-radius: 10px;
+}
+
+/* main-body: zajmuje pozostałą przestrzeń */
+.main-body {
+    flex: 1 1 auto;
+    min-width: 0; /* pozwala elementowi poprawnie zawijać treść w flexie */
+    padding: 20px;
+    border: 1px solid #ddd;
+    border-radius: 10px;
+}footer {
+    text-align: center;
+    padding: 10px;
+    font-size: 14px;
+    color: #666;
+}
+/* responsywność: na małych ekranach układ kolumnowy */
+@media (max-width: 768px) {
+    main {
+        flex-direction: column;
+    }
+    .sidebar, .main-body {
+        width: 100%;
+        flex: none;
+    }
+}
